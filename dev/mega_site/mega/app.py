@@ -1,20 +1,13 @@
 import flask
-from flask import Flask
 
-app = Flask(__name__)
+import services.package_services as ps
 
-
-def get_latest_packages():
-    return [
-        {'name': 'flask', 'version': '1.2.3'},
-        {'name': 'sqlalchemy', 'version': '2.2.0'},
-        {'name': 'passlib', 'version': '3.0.0'}
-    ]
+app = flask.Flask(__name__)
 
 
 @app.route('/')
 def index():
-    test_packages = get_latest_packages()
+    test_packages = ps.get_latest_packages()
     return flask.render_template('home/index.html', packages=test_packages)
 
 
